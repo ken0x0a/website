@@ -46,14 +46,15 @@ import { Hono } from 'hono'
 import { handle } from 'hono/cloudflare-pages'
 
 const app = new Hono()
+const hono = app.basePath('/hono');
 
-app.get('/hello', (c) => {
-  return c.json({
-    message: 'Hello, Cloudflare Pages!',
-  })
-})
+hono.get('/hello', (c) => {
+	return c.json({
+		message: 'Hello, Cloudflare Pages!',
+	});
+});
 
-export const onRequest = handle(app, '/api')
+export const onRequest = handle(app);
 ```
 
 ## 3. Run
